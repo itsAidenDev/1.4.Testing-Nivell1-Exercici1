@@ -1,13 +1,17 @@
-package org.example;
+package org.example.main;
+
+import org.example.classes.Book;
+import org.example.classes.Library;
 
 public class Main {
     public static void main(String[] args) {
         Library collection = new Library();
 
-        //Add books
+        /*Add books
         collection.addBook(new Book("1984", "George Orwell"));
         collection.addBook(new Book("The Lord of the Rings", "J.R.R. Tolkien"));
-        collection.addBook(new Book("To Kill a Mockingbird", "Harper Lee"));
+        collection.addBook(new Book());
+         */
 
         //Print book list
         System.out.println("Book List:");

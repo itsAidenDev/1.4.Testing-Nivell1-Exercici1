@@ -1,4 +1,4 @@
-package org.example;
+package org.example.classes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +29,16 @@ public class Library {
     }
 
     //Book list
-    public List<Book> getBookList() {
-        System.out.println("Book list: " + allBooks);
-        return new ArrayList<>(allBooks);
+    public String getBookList() {
+        String bookList = "";
+        for (int i = 0; i < allBooks.size(); i++) {
+            if (i == 0) {
+                bookList = bookList + allBooks.get(i);
+            } else {
+                bookList = bookList + ", " + allBooks.get(i);
+            }
+        }
+        return bookList;
     }
 
     //Get book by its position (index)

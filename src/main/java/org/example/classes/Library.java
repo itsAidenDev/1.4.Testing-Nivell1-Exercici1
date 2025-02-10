@@ -1,62 +1,31 @@
 package org.example.classes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class Library {
-    private List<Book> allBooks;
+    private List<Book> books = new ArrayList<>();
 
-    public Library(){
-        ArrayList allBooks = new ArrayList<>();
-    }
-
-    //Add a book to the end of the collection
-    public void addBook(Book book){
-        if (!allBooks.contains(book)) {
-            allBooks.add(book);
-            System.out.println("Book added: " + book);
-            // sortBooksByTitle();
+    public void addBook(Book book) {
+        if (!books.contains(book)) {
+            books.add(book);
         }
     }
 
-    //Add a book to a specific position
-    public void addBookToPos(int pos, Book book) {
-        if (!allBooks.contains(book)) {
-            allBooks.add(pos, book);
+    public List<Book> getBooks() {
+        return new ArrayList<>(books);
+    }
+
+    public Book getBookAt(int index) {
+        return (index >= 0 && index < books.size() ? books.get(index) : null);
+    }
+
+    public void addBookAt(int index, Book book) {
+        if (!books.contains(book) && index >= 0 && index <= books.size()) {
+            books.add(index, book);
         }
     }
 
-    //Book list
-    public String getBookList() {
-        String bookList = "";
-        for (int i = 0; i < allBooks.size(); i++) {
-            if (i == 0) {
-                bookList = bookList + allBooks.get(i);
-            } else {
-                bookList = bookList + ", " + allBooks.get(i);
-            }
-        }
-        return bookList;
-    }
-
-    //Get book by its position (index)
-    public Book getBookByPos(int pos) {
-        if (pos >= 0 && pos < allBooks.size()) {
-            return allBooks.get(pos);
-        } else {
-            throw new IndexOutOfBoundsException("Invalid position: " + pos);
-        }
-    }
-
-    //Delete book by title
-    public void removeBook(Book book) {
-        allBooks.remove(book);
-    }
-
-    private void sortBooksByTitle() {
-        Collections.sort(allBooks,Comparator.comparing(Book::getTitle));
+    public void removeBookTitle(String title) {
+        books.removeIf(book -> book.getTitle().equalsIgnoreCase(title));
     }
 }
-

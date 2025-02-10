@@ -12,33 +12,34 @@ public class LibraryTest {
     @BeforeEach
     public void setUp(){
         library = new Library();
+        library.addBook(new Book("Crime and Punishment"));
+        library.addBook(new Book("Don Quixote"));
+    }
+    @Test
+    void testLibraryNotNull(){
+        assertNotNull(library.getBooks());
     }
 
     @Test
-    public void testAddBook() {
-        Book book1 = new Book("Brave New World", "Aldous Huxley");
-        Book book2 = new Book("Hamlet", "William Shakespeare");
-        Book book3 = new Book("To Kill a Mockingbird", "Harper Lee");
-        String allBooks = library.getBookList();
-        allBooks.add(book1);
-        allBooks.add(book2);
-        assertNotNull(library.getBookList().size(),
-                "Book list should not be null after creation");
-        assertTrue(allBooks.contains(book1), "'Brave New World' should be in the list");
-        assertTrue(allBooks.contains(book2), "'Hamlet' should be in the list");
-        assertFalse(allBooks.contains(book3), "'To Kill a Mockingbird' shouldn't be in the list");
-        assertFalse(allBooks.isEmpty());
+    void testAddBook(){
+        library.addBook(new Book("The Lord of the Rings"));
+        assertEquals(3 , library.getBooks().size());
     }
 
     @Test
-    public void testGetBookByPos() {
-        Book book1 = new Book("Brave New World", "Aldous Huxley");
-        Book book2 = new Book("Hamlet", "William Shakespeare");
-        Book book3 = new Book("To Kill a Mockingbird", "Harper Lee");
-        library.addBook(book1);
-        library.addBook(book2);
-        assertEquals(book1, library.getBookByPos(0), "Book in position 0 should be 'Brave New World'");
-        assertEquals("Not valid position", library.getBookByPos(15));
+    void testGetBookAt(){
+        assertTrue(library.getBookAt(1).getTitle().equalsIgnoreCase("Don Quixote"));
     }
 
+    @Test
+    void testAddBookAt(){
+        library.addBookAt(1, new Book("Moby Dick"));
+        assertEquals("Moby Dick", library.getBookAt(1).getTitle());
+    }
+
+    @Test
+    void testRemoveBookTitle(){
+        library.removeBookTitle("Don Quixote");
+        assertEquals(1, library.getBooks().size());
+    }
 }

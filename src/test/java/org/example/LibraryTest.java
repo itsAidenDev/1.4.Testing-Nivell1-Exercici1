@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.classes.Book;
 import org.example.classes.Library;
+import org.example.classes.LibraryManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
